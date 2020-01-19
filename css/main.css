@@ -7,95 +7,99 @@ p {
     margin: 10px;
 }
 
-
-
+/* Containers */
 .app-container {
-    margin: auto;
+	margin: auto;
 	border: 1px solid black;
 	border-radius: 25px;
-	background-color: #313131;
+	background-color: #2C2C2C;
 	color: white;
-	width: 400px;
-	height: 700px;
+	width: 300px;
+	height: 433px;
 }
 
 .header {
     padding-left: 20px;
 }
 
-/* table {
-    width: 100%;
-    border-collapse: collapse;
+.contacts-container {
 }
 
-table:nth(odd) {
-	background-color: #191919;
-	
-}
-
-table:nth(even) {
-	background-color: #212121;
-}
-
-td {
-    
-    border: 1px solid black;
-    padding-left: 20px;
-} */
-
-/*---- JS Controls ----*/
-.hide {
-    display: none !important;
+.footer {
+	background-color: #313131;
+	text-align: right;
+	padding: 10px;
 }
 
 /*---- Contacts ----*/
-section.contact {
+.contact {
+	border: 1px solid #131313;
 	display: flex;
-	display: -webkit-flex;
-	align-items: center;
-	-webkit-align-items: center;
-	background-color: #212121;
-	cursor: pointer;
-	border-collapse: collapse;
-	border-top: 1px solid #131313;
-	border-bottom: 1px solid #131313;
 }
-
-/* .contact-container div {
-    display: inline-table;
-    border: 1px solid white;
-    height: 50px;
-} */
 
 .name {
     display: inline-block;
     width: 30%;
 }
 
+
+
 .col1 {
-    width: 30%;
-    padding-left: 20px;
+	display: inline-block;
+	border-right: 1px solid #131313;
+	width: 35%;
+	/* height: 47px; */
+	padding-left: 20px;
 }
 
 .col2 {
-    width: 70%;
+	display: inline-block;
+	color: #4F4F4F;
+	width: 65%;
+	font-size: 15px;
+	text-align: left;
 }
+
 /*---- Status Signals ----*/
-.red-light {
+.offline {
 	background-color: #EA0807;
 }
 
-.yellow-light {
+.away {
 	background-color: #F9F804;
 }
 
-.green-light {
+.online {
 	background-color: #01FC21;
 }
 
 .light {
 	display: inline-block;
-	width: 14px;
-	height: 14px;
+	width: 10px;
+	height: 10px;
 	border-radius: 50%;
+}
+
+
+/* JS controller */
+.hidden {
+	display: none;
+}
+
+.expanded {
+	background-color: #484848;
+	position: relative;
+}
+
+.expanded .col2 {
+	color: white;
+	position: absolute;
+	right: 0;
+}
+
+.expanded .col2 .phone,
+.expanded .col2 .email,
+.expanded .col2 .address {
+	display: block;
+	position: relative;
 }
