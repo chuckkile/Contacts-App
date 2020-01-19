@@ -6,6 +6,7 @@ const phoneNumbers = document.getElementsByClassName('phone');
 const contactRows = document.getElementsByClassName('contact');
 const appContainer = document.querySelector('#app-container');
 const ids = [];
+const overlay = document.querySelector('#overlay');
 
 
 //// Event Listeners
@@ -16,24 +17,6 @@ toggle.addEventListener('change', toggleInfo);
 contacts.forEach(function (contact) {
     createContact(contact);
 });
-
-
-// For each contact (id in array) onclick, show/hide toggle
-ids.forEach(function(id) {
-    const elem = document.getElementById(id);
-    
-    elem.onclick = function(e) {
-        if(elem.classList.contains('expanded')) {
-            elem.classList.remove('expanded');
-        } else {
-            elem.classList.add('expanded');
-        }
-    };
-});
-
-function loggit(message) {
-    console.log(message)
-}
 
 
 //// Functions
@@ -75,12 +58,16 @@ function createContact(contact) {
         <p class="name">${contact.name}</p>
     </div>
     <div class="col col2 info-container">
-        <p class="email">${contact.email}</p>
-        <p class="phone hidden">${contact.phone}</p>
-        <p class="address hidden">
-            ${contact.address.street}<br>
-            ${contact.address.city} ${contact.address.state} ${contact.address.zipcode}
-        </p>
+        <div class="info-wrapper">
+            <p class="email">${contact.email}</p>
+            <p class="hidden" id="email-link">
+            <a href="mailto:${contact.email}">${contact.email}</a></p>
+            <p class="phone hidden">${contact.phone}</p>
+            <p class="address hidden">
+                ${contact.address.street}<br>
+                ${contact.address.city} ${contact.address.state} ${contact.address.zipcode}
+            </p>
+        </div>
     </div>
     `;
 
@@ -89,4 +76,28 @@ function createContact(contact) {
     contactContainer.innerHTML = htmlInsert;
 
     ids.push(contact.id)
+}
+
+// For each contact (id in array) onclick, show/hide toggle
+ids.forEach(function(id) {
+    const elem = document.getElementById(id);
+    
+    elem.onclick = function(e) {
+        if(elem.classList.contains('expanded')) {
+            elem.classList.remove('expanded');
+            overlay.classList.add('hidden');
+        } else {
+            elem.classList.add('expanded');
+            overlay.classList.remove('hidden');
+        }
+        
+    };
+
+});
+
+// Close expanded contact when overlay is clicked
+overlay.onclick = function() {
+    const showing = document.querySelector('.expanded');
+    showing.classList.remove('expanded');
+    overlay.classList.add('hidden');
 }

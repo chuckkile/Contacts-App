@@ -7,6 +7,10 @@ p {
     margin: 10px;
 }
 
+a {
+	color: #03EFE9;
+}
+
 /* Containers */
 .app-container {
 	margin: auto;
@@ -16,19 +20,22 @@ p {
 	color: white;
 	width: 300px;
 	height: 433px;
+	overflow: hidden;
 }
 
 .header {
-    padding-left: 20px;
+	padding-left: 20px;
+	position: relative;
+	z-index: 3;
 }
 
-.contacts-container {
-}
+
 
 .footer {
 	background-color: #313131;
 	text-align: right;
-	padding: 10px;
+	padding-top: 10px;
+	padding-right: 20px;
 }
 
 /*---- Contacts ----*/
@@ -42,14 +49,12 @@ p {
     width: 30%;
 }
 
-
-
 .col1 {
 	display: inline-block;
 	border-right: 1px solid #131313;
 	width: 35%;
-	/* height: 47px; */
 	padding-left: 20px;
+	/* height: 47px; */
 }
 
 .col2 {
@@ -59,6 +64,12 @@ p {
 	font-size: 15px;
 	text-align: left;
 }
+
+.info-wrapper {
+	padding-left: 10px;
+}
+
+
 
 /*---- Status Signals ----*/
 .offline {
@@ -82,6 +93,19 @@ p {
 
 
 /* JS controller */
+#overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 2;
+	cursor: pointer;
+  }
+
 .hidden {
 	display: none;
 }
@@ -89,17 +113,29 @@ p {
 .expanded {
 	background-color: #484848;
 	position: relative;
+	z-index: 10;
 }
 
-.expanded .col2 {
+.expanded .col2 .info-wrapper {
 	color: white;
 	position: absolute;
-	right: 0;
+	background-color: #484848;
+	width: 100%;
+
+}
+
+.expanded .col2 .info-wrapper .email {
+	display: none;
 }
 
 .expanded .col2 .phone,
-.expanded .col2 .email,
+.expanded .col2 #email-link,
 .expanded .col2 .address {
 	display: block;
 	position: relative;
+}
+
+.contact:last-child.expanded .col2 .info-wrapper,
+.contact:nth-last-child(2).expanded .col2 .info-wrapper {
+	bottom: 0;
 }
